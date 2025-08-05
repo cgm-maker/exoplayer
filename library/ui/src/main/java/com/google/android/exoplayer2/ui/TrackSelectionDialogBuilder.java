@@ -24,8 +24,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
+
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.Player;
@@ -35,6 +37,7 @@ import com.google.android.exoplayer2.trackselection.TrackSelectionOverride;
 import com.google.android.exoplayer2.trackselection.TrackSelectionParameters;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -251,7 +254,7 @@ public final class TrackSelectionDialogBuilder {
 
     // Inflate with the builder's context to ensure the correct style is used.
     LayoutInflater dialogInflater = LayoutInflater.from(builder.getContext());
-    View dialogView = dialogInflater.inflate(R.layout.exo_track_selection_dialog, /* root= */ null);
+    View dialogView = dialogInflater.inflate(R.layout.legacy_exo_track_selection_dialog, /* root= */ null);
     Dialog.OnClickListener okClickListener = setUpDialogView(dialogView);
 
     return builder
@@ -277,7 +280,7 @@ public final class TrackSelectionDialogBuilder {
       Context builderContext = (Context) builderClazz.getMethod("getContext").invoke(builder);
       LayoutInflater dialogInflater = LayoutInflater.from(builderContext);
       View dialogView =
-          dialogInflater.inflate(R.layout.exo_track_selection_dialog, /* root= */ null);
+              dialogInflater.inflate(R.layout.legacy_exo_track_selection_dialog, /* root= */ null);
       Dialog.OnClickListener okClickListener = setUpDialogView(dialogView);
 
       builderClazz.getMethod("setTitle", CharSequence.class).invoke(builder, title);
@@ -298,7 +301,7 @@ public final class TrackSelectionDialogBuilder {
   }
 
   private Dialog.OnClickListener setUpDialogView(View dialogView) {
-    TrackSelectionView selectionView = dialogView.findViewById(R.id.exo_track_selection_view);
+    TrackSelectionView selectionView = dialogView.findViewById(R.id.legacy_exo_track_selection_view);
     selectionView.setAllowMultipleOverrides(allowMultipleOverrides);
     selectionView.setAllowAdaptiveSelections(allowAdaptiveSelections);
     selectionView.setShowDisableOption(showDisableOption);

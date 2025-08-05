@@ -48,11 +48,13 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
+
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.MediaMetadata;
 import com.google.android.exoplayer2.PlaybackException;
@@ -69,14 +71,16 @@ import com.google.android.exoplayer2.util.RepeatModeUtil;
 import com.google.android.exoplayer2.util.Util;
 import com.google.android.exoplayer2.video.VideoSize;
 import com.google.common.collect.ImmutableList;
+
+import org.checkerframework.checker.nullness.qual.EnsuresNonNullIf;
+import org.checkerframework.checker.nullness.qual.RequiresNonNull;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
-import org.checkerframework.checker.nullness.qual.EnsuresNonNullIf;
-import org.checkerframework.checker.nullness.qual.RequiresNonNull;
 
 /**
  * A high level view for {@link Player} media playbacks. It displays video, subtitles and album art
@@ -302,7 +306,7 @@ public class StyledPlayerView extends FrameLayout implements AdViewProvider {
 
     boolean shutterColorSet = false;
     int shutterColor = 0;
-    int playerLayoutId = R.layout.exo_styled_player_view;
+    int playerLayoutId = R.layout.legacy_exo_styled_player_view;
     boolean useArtwork = true;
     int defaultArtworkId = 0;
     boolean useController = true;
@@ -353,7 +357,7 @@ public class StyledPlayerView extends FrameLayout implements AdViewProvider {
     setDescendantFocusability(FOCUS_AFTER_DESCENDANTS);
 
     // Content frame.
-    contentFrame = findViewById(R.id.exo_content_frame);
+    contentFrame = findViewById(R.id.legacy_exo_content_frame);
     if (contentFrame != null) {
       setResizeModeRaw(contentFrame, resizeMode);
     }
@@ -426,7 +430,7 @@ public class StyledPlayerView extends FrameLayout implements AdViewProvider {
     }
 
     // Subtitle view.
-    subtitleView = findViewById(R.id.exo_subtitles);
+    subtitleView = findViewById(R.id.legacy_exo_subtitles);
     if (subtitleView != null) {
       subtitleView.setUserDefaultStyle();
       subtitleView.setUserDefaultTextSize();
